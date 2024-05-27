@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Главная страница</title>
+</head>
+<body>
+    <header>Ресурс для анализа текста!</header>
+
+    <ul class="sidebar">
+        <li><a href="/translator">Переводчик</a></li>
+        <li><a href="/sentiment-analysis">Анализ тональности</a></li>
+        <li><a href="/keywords-summarization">Ключевые слова и суммаризация</a></li>
+        <li><a href="/comparison">Сравнения</a></li>
+        <li><a href="/semantic-graph">Семантический граф</a></li>
+        <li><a href="/morphological-analysis">Морфологический анализ</a></li>
+    </ul>
+    <div class="main-content"><h2>Выберите необходимое действие:</h2></div>
+    <footer>Веб-сервис для обработки текста</footer>
+</body>
+</html>

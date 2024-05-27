@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Морфологический анализ</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+       .content-section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header><a href="/">Главная страница</a></header>
+    <ul class="sidebar">
+        <li><a href="/translator">Переводчик</a></li>
+        <li><a href="/sentiment-analysis">Анализ тональности</a></li>
+        <li><a href="/keywords-summarization">Ключевые слова и суммаризация</a></li>
+        <li><a href="/comparison">Сравнения</a></li>
+        <li><a href="/semantic-graph">Семантический граф</a></li>
+        <li><a href="/morphological-analysis">Морфологический анализ</a></li>
+    </ul>
+    <div class="main-content">
+        <h1>Морфологический анализ</h1>
+
+        <form action="/morphological-analysis" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="Upload and Analyze">
+        </form>
+
+
+        <button class="toggle-button" data-target="wordCount">Количество слов</button>
+        <div id="wordCount" class="content-section hidden">
+            {% if word_count %}
+                <p>{{ word_count }}</p>
+            {% endif %}
+        </div>
+
+
+        <button class="toggle-button" data-target="morphologyAnalysis">Анализ морфологии слов</button>
+        <div id="morphologyAnalysis" class="content-section hidden">
+            <ul>
+                {% for word, normal_form, gramm_info in an_w %}
+                <li>{{ word }}:{{normal_form}}-{{gramm_info}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+        <button class="toggle-button" data-target="spellCheck">Исправленная орфография</button>
+        <div id="spellCheck" class="content-section hidden">
+            {% if spell_check %}
+                <p>{{ spell_check }}</p>
+            {% endif %}
+        </div>
+
+
+        <button class="toggle-button" data-target="nounCount">Количество существительных</button>
+        <div id="nounCount" class="content-section hidden">
+            {% if noun_count %}
+                <p>{{ noun_count }}</p>
+            {% endif %}
+        </div>
+
+        <button class="toggle-button" data-target="verbCount">Количество глаголов</button>
+        <div id="verbCount" class="content-section hidden">
+            {% if verb_count %}
+                <p>{{ verb_count }}</p>
+            {% endif %}
+        </div>
+
+        <button class="toggle-button" data-target="findNouns">Поиск существительных</button>
+        <div id="findNouns" class="content-section hidden">
+            {% if find_nouns %}
+                <p>{{ find_nouns }}</p>
+            {% endif %}
+        </div>
+
+        <button class="toggle-button" data-target="findVerbs">Поиск глаголов</button>
+        <div id="findVerbs" class="content-section hidden">
+            {% if find_verbs %}
+                <p>{{ find_verbs }}</p>
+            {% endif %}
+        </div>
+
+
+        <button class="toggle-button" data-target="wordFrequency">Частота_встречаемости</button>
+        <div id="wordFrequency" class="content-section hidden">
+            {% for word, freq in word_freq %}
+                <li>{{ word }}:{{freq}}</li>
+            {% endfor %}
+        </div>
+
+
+        <button class="toggle-button" data-target="posAnalysis">Анализ частей речи</button>
+        <div id="posAnalysis" class="content-section hidden">
+            {% for word, freq in pos %}
+                <li>{{ word }}:{{freq}}</li>
+            {% endfor %}
+        </div>
+
+
+        <button class="toggle-button" data-target="namedEntities">Именованные сущности</button>
+        <div id="namedEntities" class="content-section hidden">
+            {% if named_entity %}
+                <p>{{ named_entity }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.toggle-button').click(function() {
+                var target = $(this).data('target');
+                $('#' + target).toggle();
+            });
+        });
+    </script>
+
+</body>
+</html>

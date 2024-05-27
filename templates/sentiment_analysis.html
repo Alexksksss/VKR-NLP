@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Анализ тональности</title>
+</head>
+<body>
+    <header><a href="/">Главная страница</a></header>
+    <ul class="sidebar">
+        <li><a href="/translator">Переводчик</a></li>
+        <li><a href="/sentiment-analysis">Анализ тональности</a></li>
+        <li><a href="/keywords-summarization">Ключевые слова и суммаризация</a></li>
+        <li><a href="/comparison">Сравнения</a></li>
+        <li><a href="/semantic-graph">Семантический граф</a></li>
+        <li><a href="/morphological-analysis">Морфологический анализ</a></li>
+    </ul>
+    <div class="main-content">
+        <h1>Анализ тональности</h1>
+        <form action="/sentiment-analysis" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="Upload and Analyze">
+        </form>
+
+
+            <ul>
+                {% for word, sentiment in result %}
+                    <li>{{ word }}: {{sentiment}}</li>
+                {% endfor %}
+            </ul>
+
+        {% if res_tone %}
+            <p>{{ res_tone }}</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

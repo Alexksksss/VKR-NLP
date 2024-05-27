@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Перевод</title>
+</head>
+<body>
+    <header><a href="/">Главная страница</a></header>
+    <ul class="sidebar">
+        <li><a href="/translator">Переводчик</a></li>
+        <li><a href="/sentiment-analysis">Анализ тональности</a></li>
+        <li><a href="/keywords-summarization">Ключевые слова и суммаризация</a></li>
+        <li><a href="/comparison">Сравнения</a></li>
+        <li><a href="/semantic-graph">Семантический граф</a></li>
+        <li><a href="/morphological-analysis">Морфологический анализ</a></li>
+    </ul>
+    <div class="main-content">
+        <h1>Переводчик</h1>
+        <form action="/translator" method="post">
+            <input type="text" name="value1" placeholder="Введите текст для перевода">
+            <button type="submit">Перевести</button>
+        </form>
+        {% if result %}
+        <p>{{ result }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
