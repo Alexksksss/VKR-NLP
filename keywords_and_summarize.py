@@ -22,7 +22,7 @@ class RakeKeywordExtractor:
 __all__ = ['RakeKeywordExtractor', 'summarize_with_bart']
 
 
-def summarize_with_bart(text, api_key = "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"):
+def summarize_with_bart(text, api_key = "API_KEY"):
     # mod = 'IlyaGusev/rubert_telegram_headlines'
     # mod = 'Nehc/mT5_ru_XLSum'
     # mod = 'IlyaGusev/rugpt3medium_sum_gazeta'
